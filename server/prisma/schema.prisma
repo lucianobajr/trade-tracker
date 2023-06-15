@@ -42,15 +42,57 @@ model client {
 }
 
 model sale {
-  id     String @id @default(uuid())
+  id           String @id @default(uuid())
   total_amount Float
-  amount_paid Float
-  discount Float
-  
-  date     DateTime @default(now())
+  amount_paid  Float
+  discount     Float
 
-  client client @relation(fields: [clientId], references: [id])
+  date DateTime @default(now())
+
+  client   client @relation(fields: [clientId], references: [id])
   clientId String
+  item     item[]
 
   @@map("sales")
+}
+
+model maker {
+  id String @id @default(uuid())
+
+  name    String
+  site    String
+  product product[]
+
+  @@map("makers")
+}
+
+model product {
+  id String @id @default(uuid())
+
+  name        String
+  description String
+
+  stock         Float
+  cost_price    Float
+  selling_price Float
+
+  maker   maker  @relation(fields: [makerId], references: [id])
+  makerId String
+  item    item[]
+
+  @@map("products")
+}
+
+model item {
+  id String @id @default(uuid())
+
+  sale   sale   @relation(fields: [saleId], references: [id])
+  saleId String
+
+  product   product @relation(fields: [productId], references: [id])
+  productId String
+
+  amount Float
+
+  @@map("items")
 }
