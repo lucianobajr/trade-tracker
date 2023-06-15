@@ -18,3 +18,39 @@ model admin {
 
   @@map("admins")
 }
+
+model city {
+  id     String   @id @default(uuid())
+  name   String
+  state  String
+  client client[]
+
+  @@map("cities")
+}
+
+model client {
+  id     String @id @default(uuid())
+  name   String
+  adress String
+  phone  String
+
+  city   city   @relation(fields: [cityId], references: [id])
+  cityId String
+  sale   sale[]
+
+  @@map("clients")
+}
+
+model sale {
+  id     String @id @default(uuid())
+  total_amount Float
+  amount_paid Float
+  discount Float
+  
+  date     DateTime @default(now())
+
+  client client @relation(fields: [clientId], references: [id])
+  clientId String
+
+  @@map("sales")
+}
