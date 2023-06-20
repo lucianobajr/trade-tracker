@@ -54,6 +54,7 @@ const Input: React.FC<InputProps> = ({
         />
         {type === "password" && !error && (
           <button
+            type="button"
             className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-500 focus:outline-none"
             onClick={handleToggle}
           >

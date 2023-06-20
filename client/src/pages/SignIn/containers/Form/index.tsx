@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 // context
 import { useAuth } from "../../../../contexts/AuthContext";
@@ -22,9 +22,11 @@ interface SignInFormData {
 const Form: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const [loading, setLoading] = useState(false);
   const { signIn } = useAuth();
 
   const handleSubmit = useCallback(async (data: SignInFormData) => {
+    setLoading(true);
     try {
       formRef.current?.setErrors({});
 
@@ -52,6 +54,7 @@ const Form: React.FC = () => {
         alert("Algo deu errado! Teste novamente");
       }
     }
+    finally { setLoading(false) }
   }, [signIn]);
 
   const containerVariants = {
@@ -65,58 +68,61 @@ const Form: React.FC = () => {
   };
 
   return (
-    <motion.div
-      className="h-screen w-full md:w-1/2 bg-gray-100 flex items-center justify-center"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      transition={{ duration: 0.5 }}
-    >
       <motion.div
-        className="p-8 bg-white rounded-xl inline-flex flex-col gap-y-12 items-center justify-start"
-        variants={formVariants}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        className="h-screen w-full md:w-1/2 bg-gray-100 flex items-center justify-center"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+        transition={{ duration: 0.5 }}
       >
-        <p className="text-3xl font-medium text-zinc-900">Faça login</p>
-        <div className="py-4 bg-white flex flex-col gap-y-9 items-center justify-start">
-          <FormComponent
-            className="flex flex-col gap-y-6"
-            ref={formRef}
-            onSubmit={handleSubmit}
-          >
-            <Input
-              label="E-mail"
-              name="email"
-              type="text"
-              placeholder="johndoe@gmail.com"
-            />
-            <Input
-              label="Password"
-              name="password"
-              type="password"
-              placeholder="************"
-            />
-            <button
-              className="min-w-full py-3 bg-cyan-600 hover:bg-cyan-700 rounded-2xl font-poppins font-medium text-white transition-colors duration-300"
-              type="submit"
+        <motion.div
+          className="p-8 bg-white rounded-xl inline-flex flex-col gap-y-12 items-center justify-start"
+          variants={formVariants}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <p className="text-3xl font-medium text-zinc-900">Faça login</p>
+          <div className="py-4 bg-white flex flex-col gap-y-9 items-center justify-start">
+            <FormComponent
+              className="flex flex-col gap-y-6"
+              ref={formRef}
+              onSubmit={handleSubmit}
             >
-              entrar
-            </button>
-          </FormComponent>
+              <Input
+                label="E-mail"
+                name="email"
+                type="text"
+                placeholder="johndoe@gmail.com"
+              />
+              <Input
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="************"
+              />
+              <button
+                className="min-w-full py-3 bg-cyan-600 hover:bg-cyan-700 rounded-2xl font-poppins font-medium text-white transition-colors duration-300"
+                type="submit"
+                disabled={loading}
+                style={{ cursor: loading ? "not-allowed" : "pointer" }}
+              >
+                {loading ? "Carregando..." : "Entrar"}
+              </button>
 
-          <p className="font-poppins text-base font-medium leading-tight">
-            não tem uma conta?
-            <Link
-              className="text-cyan-600 hover:text-cyan-700 transition-colors duration-300"
-              to={"/sign-up"}
-            >
-              {" "}
-              registre-se
-            </Link>
-          </p>
-        </div>
+            </FormComponent>
+
+            <p className="font-poppins text-base font-medium leading-tight">
+              não tem uma conta?
+              <Link
+                className="text-cyan-600 hover:text-cyan-700 transition-colors duration-300"
+                to={"/sign-up"}
+              >
+                {" "}
+                registre-se
+              </Link>
+            </p>
+          </div>
+        </motion.div>
       </motion.div>
-    </motion.div>
   );
 };
 
