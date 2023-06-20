@@ -21,6 +21,7 @@ module.exports = {
         'gray-200': '#e1e0e3',
         'cyan-600': '#31af99',
         'cyan-700': '#197d7e',
+        'error':"#E92C2C"
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif'],

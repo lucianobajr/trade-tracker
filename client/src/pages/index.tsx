@@ -1,3 +1,15 @@
-import Main from "./Main";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
-export { Main }
+import Home from "./Home"
+
+const auth = {
+    SignIn,
+    SignUp
+}
+
+const app = {
+    Home
+}
+
+export { auth,app }
