@@ -9,7 +9,7 @@ module.exports = {
         'sm': '640px', // Modifique de acordo com suas necessidades
         'md': '768px',
         'lg': '1024px',
-        'xl': '1280px',
+        'xl': '1280px'
       },
       colors: {
         'white': '#ffffff',
