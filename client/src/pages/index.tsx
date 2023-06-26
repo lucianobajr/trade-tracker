@@ -1,7 +1,7 @@
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
-import Home from "./Home"
+import Dashboard from "./Dashboard"
 
 const auth = {
     SignIn,
@@ -9,7 +9,7 @@ const auth = {
 }
 
 const app = {
-    Home
+    Dashboard
 }
 
 export { auth,app }

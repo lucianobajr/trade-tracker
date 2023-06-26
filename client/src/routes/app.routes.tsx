@@ -1,14 +1,15 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { app } from "../pages"
 
 const AppRoutes: React.FC = () => {
   return (
     <Routes>
-      <Route index path="/" element={<app.Home />} />
+      <Route path="/dashboard/*" element={<app.Dashboard />} />
 
-      <Route path="*" element={<app.Home />} />
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+
     </Routes>
   );
 };
