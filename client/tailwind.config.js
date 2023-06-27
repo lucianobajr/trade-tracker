@@ -20,13 +20,13 @@ module.exports = {
         black: "#000000",
         "black-secondary": "#1a1c1e",
         transparent: "#ffffff",
+        light:"#f2f5f6",
         gray:{
           100:"#f5f4f7",
           200:"#e1e0e3",
           900:"#1a1c1e"
         },
         cyan:{
-          50: "#d3d3d3",
           600:"#31af99",
           700: "#197d7e",
         },
