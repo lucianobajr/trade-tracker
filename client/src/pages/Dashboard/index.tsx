@@ -1,9 +1,10 @@
 import React from "react";
-import { Route, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { useAuth } from "../../contexts/AuthContext";
 
 import routes from "../../routes/dashboard.routes"
+import { Footer, Navbar, Sidebar } from "../../components";
 
 function Dashboard(props: { [x: string]: any }) {
   const { signOut } = useAuth();
@@ -48,7 +49,7 @@ function Dashboard(props: { [x: string]: any }) {
   };
   const getRoutes = (routes: RoutesType[]): any => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/admin") {
+      if (prop.layout === "/dashboard") {
         return (
           <Route path={`/${prop.path}`} element={prop.component} key={key} />
         );
@@ -60,16 +61,41 @@ function Dashboard(props: { [x: string]: any }) {
 
   document.documentElement.dir = "ltr";
 
-  return <div>
-    <h1 className="text-black-secondary">Dashboard</h1>
-    <button
-      className="min-w-full py-3 bg-cyan-600 hover:bg-cyan-700 rounded-2xl font-poppins font-medium text-white transition-colors duration-300"
-      type="submit"
-      onClick={signOut}
-    >
-      sair
-    </button>
-  </div>;
+  return (
+    <div className="flex h-full w-full">
+      <Sidebar open={open} onClose={() => setOpen(false)} />
+      {/* Navbar & Main Content */}
+      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+        {/* Main Content */}
+        <main
+          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+        >
+          {/* Routes */}
+          <div className="h-full">
+            <Navbar
+              onOpenSidenav={() => setOpen(true)}
+              brandText={currentRoute}
+              secondary={getActiveNavbar(routes)}
+              {...rest}
+            />
+            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+              <Routes>
+                {getRoutes(routes)}
+
+                <Route
+                  path="/"
+                  element={<Navigate to="/dashboard/default" replace />}
+                />
+              </Routes>
+            </div>
+            <div className="p-3">
+              <Footer />
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;

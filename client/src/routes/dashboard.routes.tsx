@@ -13,6 +13,7 @@ const dashboardRoutes = [
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
     component: <Default />,
+    secondary: false,
   },
   {
     name: "Data Tables",
@@ -20,6 +21,7 @@ const dashboardRoutes = [
     icon: <MdBarChart className="h-6 w-6" />,
     path: "data-tables",
     component: <Tables />,
+    secondary: false,
   },
   {
     name: "Profile",
@@ -27,6 +29,7 @@ const dashboardRoutes = [
     path: "profile",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Profile />,
+    secondary: false,
   },
 ];
 export default dashboardRoutes;
