@@ -51,8 +51,6 @@ const AuthProvider: React.FC<Props> = ({ children }) => {
     const response = await api.post("/admins/auth/login", { email, password });
     const { token, admin } = response.data;
 
-    console.log(response.data)
-
     localStorage.setItem("@trade-tracker:token", token);
     localStorage.setItem("@trade-tracker:admin", JSON.stringify(admin));
 

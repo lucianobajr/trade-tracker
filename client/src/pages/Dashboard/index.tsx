@@ -1,14 +1,10 @@
 import React from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
-import { useAuth } from "../../contexts/AuthContext";
-
 import routes from "../../routes/dashboard.routes"
 import { Footer, Navbar, Sidebar } from "../../components";
 
 function Dashboard(props: { [x: string]: any }) {
-  const { signOut } = useAuth();
-
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
@@ -59,13 +55,11 @@ function Dashboard(props: { [x: string]: any }) {
     });
   };
 
-  document.documentElement.dir = "ltr";
-
   return (
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />
       {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+      <div className="h-full w-full bg-cyan-50 dark:!bg-navy-900">
         {/* Main Content */}
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}

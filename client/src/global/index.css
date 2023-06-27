@@ -38,3 +38,18 @@ button {
 ul {
   list-style: none;
 }
+
+input.defaultCheckbox::before {
+	content: url(../assets/vectors/checked.svg); 
+	color: white;
+	opacity: 0; 
+	height: 16px; 
+	width: 16px;
+	position: absolute; 
+	left: 50%;
+	transform: translate(-50%, 0px);
+} 
+
+input:checked.defaultCheckbox::before { 
+	opacity: 1;
+}

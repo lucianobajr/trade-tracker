@@ -1,32 +1,44 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  darkMode: "class",
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        "3xl": "14px 17px 40px 4px",
+        inset: "inset 0px 18px 22px",
+        darkinset: "0px 4px 4px inset",
+      },
       screens: {
-        'sm': '640px', // Modifique de acordo com suas necessidades
-        'md': '768px',
-        'lg': '1024px',
-        'xl': '1280px'
+        sm: "640px", // Modifique de acordo com suas necessidades
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
       },
-      colors: {
-        'white': '#ffffff',
-        'black': '#000000',
-        'black-secondary': '#1a1c1e',
-        'transparent': '#ffffff',
-        'gray-900': '#1a1c1e',
-        'gray-100': '#f5f4f7',
-        'gray-200': '#e1e0e3',
-        'cyan-600': '#31af99',
-        'cyan-700': '#197d7e',
-        'error':"#E92C2C"
-      },
+      colors: () => ({
+        white: "#ffffff",
+        black: "#000000",
+        "black-secondary": "#1a1c1e",
+        transparent: "#ffffff",
+        gray:{
+          100:"#f5f4f7",
+          200:"#e1e0e3",
+          900:"#1a1c1e"
+        },
+        cyan:{
+          50: "#d3d3d3",
+          600:"#31af99",
+          700: "#197d7e",
+        },
+        error: "#E92C2C",
+        shadow: {
+          500: "rgba(112, 144, 176, 0.08)",
+        },
+      }),
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif'],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },
   plugins: [],
-}
+};

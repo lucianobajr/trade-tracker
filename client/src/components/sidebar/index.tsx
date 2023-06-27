@@ -3,8 +3,10 @@
 import { HiX } from "react-icons/hi";
 import Links from "./components/Links";
 
-import SidebarCard from "./componentsrtl/SidebarCard";
 import routes from "../../routes/dashboard.routes";
+
+import { motion } from "framer-motion";
+import { LogoBlack } from "../../assets";
 
 const Sidebar = (props: {
   open: boolean;
@@ -26,7 +28,14 @@ const Sidebar = (props: {
 
       <div className={`mx-[56px] mt-[50px] flex items-center`}>
         <div className="mt-1 ml-1 h-2.5 font-poppins text-[26px] font-bold uppercase text-navy-700 dark:text-white">
-          Horizon <span className="font-medium">FREE</span>
+        <motion.img
+          src={LogoBlack}
+          alt="logo trade tracker white"
+          className="w-44"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+        />
         </div>
       </div>
       <div className="mt-[58px] mb-7 h-px bg-gray-300 dark:bg-white/30" />
@@ -35,11 +44,6 @@ const Sidebar = (props: {
       <ul className="mb-auto pt-1">
         <Links routes={routes} />
       </ul>
-
-      {/* Free Horizon Card */}
-      <div className="flex justify-center">
-        <SidebarCard />
-      </div>
 
       {/* Nav item end */}
     </div>

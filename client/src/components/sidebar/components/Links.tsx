@@ -18,9 +18,7 @@ export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
   const createLinks = (routes: RoutesType[]) => {
     return routes.map((route, index) => {
       if (
-        route.layout === "/admin" ||
-        route.layout === "/auth" ||
-        route.layout === "/rtl"
+        route.layout === "/dashboard"
       ) {
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
@@ -32,7 +30,7 @@ export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
                 <span
                   className={`${
                     activeRoute(route.path) === true
-                      ? "font-bold text-brand-500 dark:text-white"
+                      ? "font-bold text-cyan-700 dark:text-white"
                       : "font-medium text-gray-600"
                   }`}
                 >
@@ -49,7 +47,7 @@ export const SidebarLinks = (props: { routes: RoutesType[] }): JSX.Element => {
                 </p>
               </li>
               {activeRoute(route.path) ? (
-                <div className="absolute right-0 top-px h-9 w-1 rounded-lg bg-brand-500 dark:bg-brand-400" />
+                <div className="absolute right-0 top-px h-9 w-1 rounded-lg bg-cyan-700 dark:bg-cyan-700" />
               ) : null}
             </div>
           </Link>

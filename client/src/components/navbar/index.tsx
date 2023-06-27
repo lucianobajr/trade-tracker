@@ -12,6 +12,8 @@ import {
 } from "react-icons/io";
 import avatar from "../../assets/img/avatars/avatar4.png";
 
+import { useAuth } from "../../contexts/AuthContext";
+
 const Navbar = (props: {
   onOpenSidenav: () => void;
   brandText: string;
@@ -19,6 +21,10 @@ const Navbar = (props: {
 }) => {
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = React.useState(false);
+
+  const { signOut } = useAuth();
+
+  const handleSignOut = () => signOut();
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -199,25 +205,27 @@ const Navbar = (props: {
               </div>
               <div className="mt-3 h-px w-full bg-gray-200 dark:bg-white/20 " />
 
-              <div className="mt-3 ml-4 flex flex-col">
-                <a
-                  href=" "
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Profile Settings
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Newsletter Settings
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+              <div className="h-full my-3 mx-4 flex flex-col justify-between">
+                <div className="flex flex-col">
+                  <a
+                    href=" "
+                    className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                  >
+                    Profile Settings
+                  </a>
+                  <a
+                    href=" "
+                    className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+                  >
+                    Newsletter Settings
+                  </a>
+                </div>
+                <button
+                  className="w-full border rounded-2xl mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+                  onClick={handleSignOut}
                 >
                   Log Out
-                </a>
+                </button>
               </div>
             </div>
           }
