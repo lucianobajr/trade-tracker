@@ -1,8 +1,8 @@
 // Admin Imports
-import { Default, Profile, Clients,Sales,Products,Makers } from "../pages/Dashboard/views";
+import { Default, Profile, Clients, City,Sales,Products,Makers } from "../pages/Dashboard/views";
 
 // Icon Imports
-import { MdHome, MdSupervisedUserCircle, MdPerson,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
+import { MdHome, MdSupervisedUserCircle,MdLocationCity ,MdPerson,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
 
 const dashboardRoutes = [
   {
@@ -19,6 +19,14 @@ const dashboardRoutes = [
     icon: <MdSupervisedUserCircle className="h-6 w-6" />,
     path: "clients",
     component: <Clients />,
+    secondary: false,
+  },
+  {
+    name: "Cidades",
+    layout: "/dashboard",
+    icon: <MdLocationCity className="h-6 w-6" />,
+    path: "cities",
+    component: <City />,
     secondary: false,
   },
   {

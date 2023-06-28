@@ -25,6 +25,7 @@ model city {
   id     String   @id @default(uuid())
   name   String
   state  String
+  cep    String   @unique
   client client[]
 
   @@map("cities")
@@ -75,7 +76,7 @@ model maker {
 model product {
   id String @id @default(uuid())
 
-  name        String
+  name        String @unique
   description String
 
   stock         Float

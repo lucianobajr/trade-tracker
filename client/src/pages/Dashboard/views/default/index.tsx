@@ -1,16 +1,20 @@
 import React from "react";
 import { MdBarChart, MdDashboard } from "react-icons/md";
-import { Widget } from "../../../../components";
+import { Footer, Widget } from "../../../../components";
 
 import { IoMdHome } from "react-icons/io";
 import { IoDocuments } from "react-icons/io5";
 
 import TotalSpent from "./components/total-spent";
 import WeeklyRevenue from "./components/weekly-revenue";
+import ComplexTable from "./components/complex-table";
+import tableDataComplex from "./variables/table-data-complex";
+import DailyTraffic from "./components/daily-traffic";
+import PieChartCard from "./components/pie-chart-card";
 
 const Default: React.FC = () => {
   return (
-    <div>
+    <div className="">
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-6">
         <Widget
           icon={<MdBarChart className="h-7 w-7" />}
@@ -49,6 +53,21 @@ const Default: React.FC = () => {
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
         <TotalSpent />
         <WeeklyRevenue />
+      </div>
+      <div className="mt-5 grid grid-cols-1 gap-5 xl:grid-cols-2">
+        {/* Check Table */}
+        <div>
+          <ComplexTable tableData={tableDataComplex} />
+        </div>
+
+        <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
+          <DailyTraffic />
+          <PieChartCard />
+        </div>
+      </div>
+
+      <div className="p-3">
+        <Footer />
       </div>
     </div>
   );

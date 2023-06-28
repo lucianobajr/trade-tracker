@@ -4,5 +4,6 @@ import Sales from "./sales";
 import Products from "./products";
 import Makers from "./makers";
 import Profile from "./profile";
+import City from "./city";
 
-export { Default, Clients, Sales, Products, Makers, Profile };
+export { Default, Clients, City, Sales, Products, Makers, Profile };

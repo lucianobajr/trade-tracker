@@ -2,7 +2,7 @@ import React from "react";
 
 const Products: React.FC = () => {
   return (
-    <div>
+    <div  className="mt-3">
       <h1>Products</h1>
     </div>
   );

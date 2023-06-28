@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import routes from "../../routes/dashboard.routes"
-import { Footer, Navbar, Sidebar } from "../../components";
+import { Navbar, Sidebar } from "../../components";
 
 function Dashboard(props: { [x: string]: any }) {
   const { ...rest } = props;
@@ -56,13 +56,13 @@ function Dashboard(props: { [x: string]: any }) {
   };
 
   return (
-    <div className="flex h-full w-full">
+    <div className="flex w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />
       {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-light dark:!bg-navy-900">
+      <div className="h-full w-full bg-light">
         {/* Main Content */}
         <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
+          className={`mx-[12px] flex-none transition-all md:pr-2 xl:ml-[313px]`}
         >
           {/* Routes */}
           <div className="h-full">
@@ -81,9 +81,6 @@ function Dashboard(props: { [x: string]: any }) {
                   element={<Navigate to="/dashboard/default" replace />}
                 />
               </Routes>
-            </div>
-            <div className="p-3">
-              <Footer />
             </div>
           </div>
         </main>

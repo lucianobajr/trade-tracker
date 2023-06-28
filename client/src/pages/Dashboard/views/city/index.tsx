@@ -1,11 +1,11 @@
 import React from "react";
 
-const Sales: React.FC = () => {
+const City: React.FC = () => {
   return (
     <div className="mt-3">
-      <h1>Sales</h1>
+      <h1>City</h1>
     </div>
   );
 };
 
-export default Sales;
+export default City;
