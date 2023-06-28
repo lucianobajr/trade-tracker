@@ -3,9 +3,10 @@ import { CityParams } from "../../schemas/city.schema";
 
 interface ICityRepository {
   create(data: CityParams): Promise<city>;
-  findByCEP(cep: string): Promise<city | null>;
   list(): Promise<city[]>;
   filterByState(state: string): Promise<city[]>;
+  findById(id: string): Promise<city | null>;
+  delete(id: string): Promise<void>;
 }
 
 export { ICityRepository };

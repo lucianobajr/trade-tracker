@@ -12,15 +12,6 @@ class CityRepository implements ICityRepository {
 
     return newCity;
   }
-  async findByCEP(cep: string): Promise<city | null> {
-    const city = await prisma.city.findUnique({
-      where: {
-        cep,
-      },
-    });
-
-    return city;
-  }
 
   async list(): Promise<city[]> {
     const cities = await prisma.city.findMany();
@@ -38,6 +29,24 @@ class CityRepository implements ICityRepository {
     });
 
     return cities;
+  }
+
+  async findById(id: string): Promise<city | null> {
+    const city = await prisma.city.findUnique({
+      where: {
+        id
+      }
+    });
+
+    return city;
+  }
+
+  async delete(id: string): Promise<void> {
+    await prisma.city.delete({
+      where: {
+        id
+      }
+    })
   }
 }
 

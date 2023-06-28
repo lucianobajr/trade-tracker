@@ -25,7 +25,6 @@ model city {
   id     String   @id @default(uuid())
   name   String
   state  String
-  cep    String   @unique
   client client[]
 
   @@map("cities")
@@ -38,9 +37,10 @@ model client {
   adress String
   phone  String
 
-  city   city   @relation(fields: [cityId], references: [id])
-  cityId String
-  sale   sale[]
+  city   city?   @relation(fields: [cityId], references: [id], onDelete: SetNull)
+  cityId String?
+
+  sale sale[]
 
   @@map("clients")
 }

@@ -12,6 +12,9 @@ import { CityRepository } from "../../domain/city/repositories/implementations/C
 import { IAdminView } from "../../app/views/interfaces/IAdminView"
 import { AdminView } from "../../app/views/implementations/AdminView"
 
+import { ICityView } from "../../app/views/interfaces/ICityView"
+import { CityView } from "../../app/views/implementations/CityView"
+
 container.registerSingleton<IAdminsRepository>(
     "AdminsRepository",
     AdminsRepository
@@ -25,4 +28,9 @@ container.registerSingleton<ICityRepository>(
 container.registerSingleton<IAdminView>(
     "AdminView",
     AdminView
+);
+
+container.registerSingleton<ICityView>(
+    "CityView",
+    CityView
 );
