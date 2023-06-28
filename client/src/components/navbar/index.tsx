@@ -26,26 +26,26 @@ const Navbar = (props: {
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
           <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            className="font-poppins text-sm font-normal text-gray-900 hover:underline"
             href=" "
           >
             Pages
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
+            <span className="mx-1 text-sm font-poppins text-gray-900 hover:text-navy-700 dark:text-white">
               {" "}
               /{" "}
             </span>
           </a>
           <Link
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+            className="text-sm font-normal font-poppins capitalize text-gray-900 hover:underline"
             to="#"
           >
             {brandText}
           </Link>
         </div>
-        <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
+        <p className="shrink text-[33px] capitalize font-poppins text-gray-900">
           <Link
             to="#"
-            className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
+            className="font-bold capitalize hover:text-gray-900"
           >
             {brandText}
           </Link>

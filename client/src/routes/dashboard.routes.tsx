@@ -1,14 +1,12 @@
-import React from "react";
-
 // Admin Imports
-import { Default, Profile, Tables } from "../pages/Dashboard/views";
+import { Default, Profile, Clients,Sales,Products,Makers } from "../pages/Dashboard/views";
 
 // Icon Imports
-import { MdHome, MdBarChart, MdPerson } from "react-icons/md";
+import { MdHome, MdSupervisedUserCircle, MdPerson,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
 
 const dashboardRoutes = [
   {
-    name: "Main Dashboard",
+    name: "Dashboard",
     layout: "/dashboard",
     path: "default",
     icon: <MdHome className="h-6 w-6" />,
@@ -16,11 +14,35 @@ const dashboardRoutes = [
     secondary: false,
   },
   {
-    name: "Data Tables",
+    name: "Clientes",
     layout: "/dashboard",
-    icon: <MdBarChart className="h-6 w-6" />,
-    path: "data-tables",
-    component: <Tables />,
+    icon: <MdSupervisedUserCircle className="h-6 w-6" />,
+    path: "clients",
+    component: <Clients />,
+    secondary: false,
+  },
+  {
+    name: "Vendas",
+    layout: "/dashboard",
+    path: "sales",
+    icon: <MdPointOfSale className="h-6 w-6" />,
+    component: <Sales />,
+    secondary: false,
+  },
+  {
+    name: "Produtos",
+    layout: "/dashboard",
+    icon: <MdProductionQuantityLimits className="h-6 w-6" />,
+    path: "products",
+    component: <Products />,
+    secondary: false,
+  },
+  {
+    name: "Fabricantes",
+    layout: "/dashboard",
+    icon: <MdLibraryBooks className="h-6 w-6" />,
+    path: "makers",
+    component: <Makers />,
     secondary: false,
   },
   {

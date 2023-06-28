@@ -9,6 +9,7 @@ datasource db {
   directUrl         = env("DIRECT_URL")
 }
 
+// admin
 model admin {
   id         String   @id @default(uuid())
   name       String
@@ -19,6 +20,7 @@ model admin {
   @@map("admins")
 }
 
+// cidade
 model city {
   id     String   @id @default(uuid())
   name   String
@@ -28,6 +30,7 @@ model city {
   @@map("cities")
 }
 
+// clientes
 model client {
   id     String @id @default(uuid())
   name   String
@@ -41,6 +44,7 @@ model client {
   @@map("clients")
 }
 
+// vendas
 model sale {
   id           String @id @default(uuid())
   total_amount Float
@@ -56,6 +60,7 @@ model sale {
   @@map("sales")
 }
 
+// fabricantes
 model maker {
   id String @id @default(uuid())
 
@@ -66,6 +71,7 @@ model maker {
   @@map("makers")
 }
 
+// produtos
 model product {
   id String @id @default(uuid())
 
@@ -83,6 +89,7 @@ model product {
   @@map("products")
 }
 
+// itens
 model item {
   id String @id @default(uuid())
 
