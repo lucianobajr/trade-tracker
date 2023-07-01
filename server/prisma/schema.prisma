@@ -48,9 +48,9 @@ model client {
 // vendas
 model sale {
   id           String @id @default(uuid())
-  total_amount Float
-  amount_paid  Float
-  discount     Float
+  total_amount Float @default(0) // valor total
+  amount_paid  Float @default(0) // valor pago
+  discount     Float @default(0) // desconto
 
   date DateTime @default(now())
 
@@ -80,8 +80,8 @@ model product {
   description String
 
   stock         Float
-  cost_price    Float
-  selling_price Float
+  cost_price    Float // preço de custo
+  selling_price Float // preço de venda
 
   maker   maker  @relation(fields: [makerId], references: [id])
   makerId String

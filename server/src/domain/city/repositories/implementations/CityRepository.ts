@@ -19,6 +19,16 @@ class CityRepository implements ICityRepository {
     return cities;
   }
 
+  async listWithoutState(): Promise<{ name: string; }[]> {
+    const cities = await prisma.city.findMany({
+      select: {
+        name: true
+      }
+    });
+
+    return cities;
+  }
+
   async filterByState(state: string): Promise<city[]> {
     const cities = await prisma.city.findMany({
       where: {

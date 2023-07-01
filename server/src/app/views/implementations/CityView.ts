@@ -24,6 +24,17 @@ class CityView implements ICityView {
 
         return data;
     }
+
+    listWithoutState(params: { name: string; }[]): { name: string; }[] {
+        var data: { name: string; }[] = [];
+
+        params.map((city) => data.push({
+            name: city.name,
+        }))
+
+
+        return data;
+    }
 }
 
 export { CityView }

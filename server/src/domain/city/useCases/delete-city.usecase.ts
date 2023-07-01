@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
 import { ICityRepository } from "../repositories/interfaces/ICityRepository";
-import { city } from "@prisma/client";
 import { AppError } from "../../../shared/errors/AppError";
 
 @injectable()

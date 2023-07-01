@@ -1,27 +1,21 @@
 import { inject, injectable } from "tsyringe";
 
-import { UpdateClientParams } from "../schemas/client.schema";
+import { ClientParams } from "../schemas/client.schema";
 
 import { IClientRepository } from "../repositories/interfaces/IClientRepository";
 import { ICityRepository } from "../../city/repositories/interfaces/ICityRepository";
 
-import { Client } from "../../../app/models/client";
 import { AppError } from "../../../shared/errors/AppError";
+import { client } from "@prisma/client";
 
 @injectable()
-class UpdateClientUseCase {
+class CreateClientUseCase {
     constructor(
         @inject("ClientRepository") private clientRepository: IClientRepository,
         @inject("CityRepository") private cityRepository: ICityRepository
     ) { }
 
-    async execute(id: string, { name, adress, phone, cityId }: UpdateClientParams): Promise<Client> {
-        const verifyIfClientExists = await this.clientRepository.findById(id);
-
-        if (!verifyIfClientExists) {
-            throw new AppError("use not exists!");
-        }
-
+    async execute({ name, adress, phone, cityId }: ClientParams): Promise<client> {
         if (!!cityId) {
             const verifyIfCityExists = await this.cityRepository.findById(cityId);
 
@@ -31,10 +25,10 @@ class UpdateClientUseCase {
             }
         }
 
-        const newClient = await this.clientRepository.update(verifyIfClientExists.id, { name, adress, phone, cityId });
+        const newClient = await this.clientRepository.create({ name, adress, phone, cityId });
 
         return newClient;
     }
 }
 
-export { UpdateClientUseCase };
+export { CreateClientUseCase };

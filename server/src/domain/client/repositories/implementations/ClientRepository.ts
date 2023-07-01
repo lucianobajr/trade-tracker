@@ -54,7 +54,12 @@ class ClientRepository implements IClientRepository {
     }
 
     async list(): Promise<client[]> {
-        const clients = await prisma.client.findMany();
+        const clients = await prisma.client.findMany({
+            include: {
+                city: true,
+                sale: true
+            }
+        });
 
         return clients;
     }
@@ -78,6 +83,10 @@ class ClientRepository implements IClientRepository {
                     }
                 },
             },
+            include: {
+                city: true,
+                sale: true
+            }
         });
 
         return clients;
