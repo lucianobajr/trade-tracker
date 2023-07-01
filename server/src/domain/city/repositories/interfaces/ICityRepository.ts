@@ -6,6 +6,7 @@ interface ICityRepository {
   list(): Promise<city[]>;
   filterByState(state: string): Promise<city[]>;
   findById(id: string): Promise<city | null>;
+  findByName(name: string): Promise<city | null>;
   delete(id: string): Promise<void>;
 }
 

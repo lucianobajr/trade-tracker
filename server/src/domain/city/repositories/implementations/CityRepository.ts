@@ -48,6 +48,18 @@ class CityRepository implements ICityRepository {
       }
     })
   }
+
+  async findByName(name: string): Promise<city | null> {
+    const cities = await prisma.city.findFirst({
+      where: {
+        name: {
+          equals: name,
+        },
+      },
+    });
+
+    return cities;
+  }
 }
 
 export { CityRepository };

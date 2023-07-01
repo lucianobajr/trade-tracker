@@ -8,6 +8,9 @@ import { AdminsRepository } from "../../domain/admin/repositories/implementation
 import { ICityRepository } from "../../domain/city/repositories/interfaces/ICityRepository"
 import { CityRepository } from "../../domain/city/repositories/implementations/CityRepository"
 
+import { IClientRepository } from "../../domain/clients/repositories/interfaces/IClientRepository"
+import { ClientRepository } from "../../domain/clients/repositories/implementations/ClientRepostirory"
+
 //view
 import { IAdminView } from "../../app/views/interfaces/IAdminView"
 import { AdminView } from "../../app/views/implementations/AdminView"
@@ -23,6 +26,11 @@ container.registerSingleton<IAdminsRepository>(
 container.registerSingleton<ICityRepository>(
     "CityRepository",
     CityRepository
+);
+
+container.registerSingleton<IClientRepository>(
+    "ClientRepository",
+    ClientRepository
 );
 
 container.registerSingleton<IAdminView>(
