@@ -18,7 +18,7 @@ const Widget = (props: {
 
       <div className="h-50 ml-4 flex w-auto flex-col justify-center">
         <p className="font-poppins text-sm font-medium text-gray-600">{title}</p>
-        <h4 className="font-poppins text-xl font-bold text-navy-700 dark:text-white">
+        <h4 className="font-poppins text-xl font-bold text-black-secondary dark:text-white">
           {subtitle}
         </h4>
       </div>
