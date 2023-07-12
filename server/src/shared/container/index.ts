@@ -14,6 +14,9 @@ import { ClientRepository } from "../../domain/client/repositories/implementatio
 import { IMakerRepository } from "../../domain/maker/repositories/interfaces/IMakerRepository"
 import { MakerRepository } from "../../domain/maker/repositories/implementations/MakerRepository"
 
+import { IProductRepository } from "../../domain/product/repositories/interfaces/IProductRepository"
+import { ProductRepository } from "../../domain/product/repositories/implementations/ProductRepository"
+
 //view
 import { IAdminView } from "../../app/views/interfaces/IAdminView"
 import { AdminView } from "../../app/views/implementations/AdminView"
@@ -26,6 +29,9 @@ import { ClientView } from "../../app/views/implementations/ClientView"
 
 import { IMakerView } from "../../app/views/interfaces/IMakerView"
 import { MakerView } from "../../app/views/implementations/MakerView"
+
+import { IProductView } from "../../app/views/interfaces/IProductView"
+import { ProductView } from "../../app/views/implementations/ProductView"
 
 container.registerSingleton<IAdminsRepository>(
     "AdminsRepository",
@@ -45,6 +51,11 @@ container.registerSingleton<IClientRepository>(
 container.registerSingleton<IMakerRepository>(
     "MakerRepository",
     MakerRepository
+);
+
+container.registerSingleton<IProductRepository>(
+    "ProductRepository",
+    ProductRepository
 );
 
 //views
@@ -68,3 +79,7 @@ container.registerSingleton<IMakerView>(
     MakerView
 );
 
+container.registerSingleton<IProductView>(
+    "ProductView",
+    ProductView
+);

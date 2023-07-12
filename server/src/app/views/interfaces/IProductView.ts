@@ -1,0 +1,5 @@
+interface IProductView {
+
+}
+
+export { IProductView };
