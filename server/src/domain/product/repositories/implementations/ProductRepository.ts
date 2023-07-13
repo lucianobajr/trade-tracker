@@ -50,7 +50,11 @@ class ProductRepository implements IProductRepository {
     }
 
     async list(): Promise<product[]> {
-        const products = await prisma.product.findMany();
+        const products = await prisma.product.findMany({
+            include: {
+                maker: true
+            }
+        });
 
         return products;
     }
@@ -71,10 +75,23 @@ class ProductRepository implements IProductRepository {
                 makerId: {
                     equals: makerId
                 }
+            },
+            include: {
+                maker: true
             }
         })
 
         return products;
+    }
+
+    async findByname(name: string): Promise<product | null> {
+        const product = await prisma.product.findUnique({
+            where: {
+                name
+            }
+        })
+
+        return product;
     }
 }
 

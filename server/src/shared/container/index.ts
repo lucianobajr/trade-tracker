@@ -17,6 +17,9 @@ import { MakerRepository } from "../../domain/maker/repositories/implementations
 import { IProductRepository } from "../../domain/product/repositories/interfaces/IProductRepository"
 import { ProductRepository } from "../../domain/product/repositories/implementations/ProductRepository"
 
+import { ISalesRepository } from "../../domain/sales/repositories/interfaces/ISalesRepository"
+import { SalesRepository } from "../../domain/sales/repositories/implementations/SalesRepository"
+
 //view
 import { IAdminView } from "../../app/views/interfaces/IAdminView"
 import { AdminView } from "../../app/views/implementations/AdminView"
@@ -56,6 +59,11 @@ container.registerSingleton<IMakerRepository>(
 container.registerSingleton<IProductRepository>(
     "ProductRepository",
     ProductRepository
+);
+
+container.registerSingleton<ISalesRepository>(
+    "SalesRepository",
+    SalesRepository
 );
 
 //views

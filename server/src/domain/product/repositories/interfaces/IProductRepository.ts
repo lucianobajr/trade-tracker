@@ -8,6 +8,7 @@ interface IProductRepository {
     list(): Promise<product[]>;
     findById(id: string): Promise<product | null>;
     filterByMaker(makerId: string): Promise<product[]>;
+    findByname(name: string): Promise<product | null>;
 }
 
 export { IProductRepository }

@@ -32,7 +32,7 @@ class ClientRepository implements IClientRepository {
     }
 
     async update(id: string, data: UpdateClientParams): Promise<client> {
-        const { name, adress, phone, cityId } = data;
+        const { name, adress, phone } = data;
 
         const client = await prisma.client.update({
             where: {
@@ -41,12 +41,7 @@ class ClientRepository implements IClientRepository {
             data: {
                 name,
                 adress,
-                phone,
-                city: {
-                    connect: {
-                        id: cityId
-                    }
-                }
+                phone
             }
         })
 

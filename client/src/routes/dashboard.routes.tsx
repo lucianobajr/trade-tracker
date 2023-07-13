@@ -1,5 +1,5 @@
 // Admin Imports
-import { Default, Profile, Clients, City,Sales,Products,Makers } from "../pages/Dashboard/views";
+import { Default, Clients, City,Sales,Products,Makers } from "../pages/Dashboard/views";
 
 // Icon Imports
 import { MdHome, MdSupervisedUserCircle,MdLocationCity ,MdPerson,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
@@ -52,14 +52,6 @@ const dashboardRoutes = [
     path: "makers",
     component: <Makers />,
     secondary: false,
-  },
-  {
-    name: "Profile",
-    layout: "/dashboard",
-    path: "profile",
-    icon: <MdPerson className="h-6 w-6" />,
-    component: <Profile />,
-    secondary: false,
-  },
+  }
 ];
 export default dashboardRoutes;

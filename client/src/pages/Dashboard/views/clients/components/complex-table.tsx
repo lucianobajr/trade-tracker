@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback,  useState } from "react";
 
-import { Card, CardMenu, Progress } from "../../../../../components";
+import { Card } from "../../../../../components";
+import CardMenu from "./card-menu";
 
-import { MdCancel, MdCheckCircle, MdOutlineError } from "react-icons/md";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 import {
   createColumnHelper,
@@ -12,78 +13,167 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import { api } from "../../../../../services/api";
+import { useNavigate } from "react-router-dom";
+import EditClientWidget from "../widget/edit-client.widget";
+
+interface City {
+  id: string;
+  name: string;
+  state: string;
+}
 
 type RowObj = {
+  id: string;
   name: string;
-  status: string;
-  date: string;
-  progress: number;
+  adress: string;
+  phone: string;
+  city: City;
+  edit: string;
+  delete: string;
 };
 
 const columnHelper = createColumnHelper<RowObj>();
 
-// const columns = columnsDataCheck;
 export default function ComplexTable(props: { tableData: any }) {
-  const { tableData } = props;
-  const [sorting, setSorting] = React.useState<SortingState>([]);
+  var { tableData } = props;
+
+  let [isOpen, setIsOpen] = useState(false);
+  let [isOpenEdit, setIsOpenEdit] = useState(false);
+  let [clientSelected, setclientSelected] = useState("")
+
+  const history = useNavigate()
+
+  const [sorting, setSorting] = useState<SortingState>([]);
   let defaultData = tableData;
+
+  const handleDeleteRow = useCallback(async (id: string) => {
+    try {
+      await api.delete(`/clients/${id}`)
+      history(0);
+    } catch (error) {
+      alert(error)
+    }
+  }, [history])
+
+  function closeModal() {
+    setIsOpen(false)
+  }
+
+  function openModal() {
+    setIsOpen(true)
+  }
+
+  function closeModalEdit() {
+    setIsOpenEdit(false)
+    setclientSelected("");
+  }
+
+  function openModalEdit(id: string) {
+    setIsOpenEdit(true)
+    setclientSelected(id)
+  }
+
   const columns = [
+    columnHelper.accessor("id", {
+      id: "id",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">id</p>
+      ),
+      cell: (id) => (
+        <p className="text-sm font-bold text-navy-700 dark:text-white">
+          {id.getValue()}
+        </p>
+      ),
+    }),
     columnHelper.accessor("name", {
       id: "name",
       header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">NAME</p>
+        <p className="text-sm font-bold text-gray-600 dark:text-white">name</p>
       ),
-      cell: (info) => (
+      cell: (name) => (
         <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
+          {name.getValue()}
         </p>
       ),
     }),
-    columnHelper.accessor("status", {
-      id: "status",
+    columnHelper.accessor("adress", {
+      id: "adress",
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">
-          STATUS
+          adress
         </p>
       ),
-      cell: (info) => (
-        <div className="flex items-center">
-          {info.getValue() === "Approved" ? (
-            <MdCheckCircle className="text-green-500 me-1 dark:text-green-300" />
-          ) : info.getValue() === "Disable" ? (
-            <MdCancel className="text-red-500 me-1 dark:text-red-300" />
-          ) : info.getValue() === "Error" ? (
-            <MdOutlineError className="text-amber-500 me-1 dark:text-amber-300" />
-          ) : null}
+      cell: (adress) => (
+        <p className="text-sm font-bold text-navy-700 dark:text-white">
+          {adress.getValue()}
+        </p>
+      ),
+    }),
+    columnHelper.accessor("phone", {
+      id: "phone",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          phone
+        </p>
+      ),
+      cell: (phone) => (
+        <p className="text-sm font-bold text-navy-700 dark:text-white">
+          {phone.getValue()}
+        </p>
+      ),
+    }),
+    columnHelper.accessor("city", {
+      id: "city",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          city
+        </p>
+      ),
+      cell: (props) => {
+        const { row } = props;
+        return (
           <p className="text-sm font-bold text-navy-700 dark:text-white">
-            {info.getValue()}
+            {row.original.city.name}
           </p>
-        </div>
-      ),
+        )
+      },
     }),
-    columnHelper.accessor("date", {
-      id: "date",
-      header: () => (
-        <p className="text-sm font-bold text-gray-600 dark:text-white">DATE</p>
-      ),
-      cell: (info) => (
-        <p className="text-sm font-bold text-navy-700 dark:text-white">
-          {info.getValue()}
-        </p>
-      ),
-    }),
-    columnHelper.accessor("progress", {
-      id: "progress",
+    columnHelper.accessor("edit", {
+      id: "edit",
       header: () => (
         <p className="text-sm font-bold text-gray-600 dark:text-white">
-          PROGRESS
+          edit
         </p>
       ),
-      cell: (info) => (
-        <div className="flex items-center">
-          <Progress width="w-[108px]" value={info.getValue()} />
-        </div>
+      cell: (props) => {
+        const { row } = props;
+        return (
+          <button className="bg-orange-600 p-1 rounded hover:bg-orange-700" onClick={() => openModalEdit(row.original.id)}>
+            <p className="flex cursor-pointer text-white">
+              <FiEdit size={18} />
+            </p>
+          </button>
+        )
+      },
+    }),
+    columnHelper.accessor("delete", {
+      id: "delete",
+      header: () => (
+        <p className="text-sm font-bold text-gray-600 dark:text-white">
+          delete
+        </p>
       ),
+      cell: (props) => {
+        const { row } = props;
+        return (
+          <button className="bg-error p-1 rounded hover:bg-red-800" onClick={() => handleDeleteRow(row.original.id)}>
+            <p className="flex cursor-pointer text-white">
+              <FiTrash2 size={18} />
+            </p>
+          </button>
+        )
+      },
     }),
   ]; // eslint-disable-next-line
   const [data, setData] = React.useState(() => [...defaultData]);
@@ -98,13 +188,20 @@ export default function ComplexTable(props: { tableData: any }) {
     getSortedRowModel: getSortedRowModel(),
     debugTable: true,
   });
+
+
+
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div className="relative flex items-center justify-between pt-4">
         <div className="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
+          Tabela de Clientes
         </div>
-        <CardMenu />
+        <CardMenu
+          isOpen={isOpen}
+          closeModal={closeModal}
+          openModal={openModal}
+        />
       </div>
 
       <div className="mt-8 overflow-x-scroll xl:overflow-x-hidden">
@@ -162,6 +259,9 @@ export default function ComplexTable(props: { tableData: any }) {
           </tbody>
         </table>
       </div>
+
+      <EditClientWidget id={clientSelected} isOpen={isOpenEdit} closeModal={closeModalEdit} />
+
     </Card>
   );
 }

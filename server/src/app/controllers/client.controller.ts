@@ -110,15 +110,11 @@ class ClientController {
         try {
             const { id } = req.params;
 
-            const { name, adress, phone, cityId }: UpdateClientParams = UpdateClientSchema.parse(req.body);
+            const { name, adress, phone }: UpdateClientParams = UpdateClientSchema.parse(req.body);
 
-            const client = await updateClientUseCase.execute(id, { name, adress, phone, cityId });
+            await updateClientUseCase.execute(id, { name, adress, phone });
 
-            const clientView = container.resolve(ClientView)
-
-            const response = clientView.create(client);
-
-            return res.status(HttpStatusCodes.OK).json(response)
+            return res.status(HttpStatusCodes.NO_CONTENT).send()
         } catch (error) {
             return res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).json(error)
         }

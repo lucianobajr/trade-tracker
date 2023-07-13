@@ -18,8 +18,6 @@ interface UpdateProductParams {
     stock?: number;
     cost_price?: number; // preço de custo
     selling_price?: number; // preço de venda
-
-    makerId?: string;
 }
 
 const ProductSchema: ZodSchema<ProductParams> = z.object({
@@ -40,8 +38,6 @@ const UpdateProductSchema: ZodSchema<UpdateProductParams> = z.object({
     stock: z.number().optional(),
     cost_price: z.number().optional(),
     selling_price: z.number().optional(),
-
-    makerId: z.string().optional()
 });
 
 export { ProductParams, UpdateProductParams, ProductSchema, UpdateProductSchema }

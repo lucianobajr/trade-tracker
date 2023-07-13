@@ -3,15 +3,24 @@ import { motion } from "framer-motion";
 import { LogoWhite } from "../../../../assets";
 import { presentation } from "../../../../constants/auth.constants";
 
+import DashboardImg from "../../../../assets/img/others/dashboard.png";
+
 const Presentation: React.FC = () => {
   return (
     <div className="hidden md:flex flex-col items-center justify-center w-1/2 h-full bg-cyan-700 overflow-x-hidden overflow-y-hidden">
       <motion.div
-        className="w-full h-1/2 lg:h-3/5"
+        className="w-full h-1/2 lg:h-3/5 flex items-end justify-end"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
-      ></motion.div>
+      >
+        <motion.img 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.5 }} 
+          src={DashboardImg} alt="dashboard image" 
+        />
+      </motion.div>
       <motion.div
         className="w-full h-1/2 lg:h-2/5 bg-gray-900 py-9 px-6 y-3"
         initial={{ opacity: 0, y: 50 }}
