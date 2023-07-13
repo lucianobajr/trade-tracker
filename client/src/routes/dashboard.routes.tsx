@@ -2,7 +2,7 @@
 import { Default, Clients, City,Sales,Products,Makers } from "../pages/Dashboard/views";
 
 // Icon Imports
-import { MdHome, MdSupervisedUserCircle,MdLocationCity ,MdPerson,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
+import { MdHome, MdSupervisedUserCircle,MdLocationCity ,MdPointOfSale,MdProductionQuantityLimits,MdLibraryBooks } from "react-icons/md";
 
 const dashboardRoutes = [
   {
